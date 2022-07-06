@@ -224,7 +224,7 @@
       transformCenterStr = "",
       transformOutStr,
       transformIncomingStr,
-      // incoming item
+      // incoming item 
       incomingItem;
 
     if (dir === "next") {
