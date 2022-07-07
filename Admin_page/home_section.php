@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <html lang="en">
 
@@ -35,126 +35,140 @@
             <!-- /main sidebar -->
 
 
-            <!-- Main content -->
-            <div class="content-wrapper">
+                 <!-- Main content -->
+                 <div class="content-wrapper">
 
-                <!-- Page header -->
-                <div class="breadcrumb-line">
-                    <ul class="breadcrumb">
-                        <li><a href="index.php"><i class="icon-home2 position-left"></i> Deshbord</a></li>
-                        <li>Home Section</li>
-                    </ul>
+<!-- Page header -->
+<div class="breadcrumb-line">
+    <ul class="breadcrumb">
+        <li><a href="index.php"><i class="icon-home2 position-left"></i> Deshbord</a></li>
+        <li>Account Seting</li>
+    </ul>
+</div>
+<!-- /page header -->
+
+<!-- Content area -->
+<div class="content">
+
+
+    <?php
+
+
+    $selectQry = "SELECT * FROM account_seting";
+
+    $account_setingQry = mysqli_query($db_config, $selectQry);
+
+    foreach ($account_setingQry as $key => $singleDataAC) {
+
+
+    ?>
+
+
+
+        <!-- Dashboard content -->
+        <div class="row">
+            <!-- Cover area -->
+            <div class="profile-cover">
+                <div class="profile-cover-img" style="background-image: url(assets/images/cover.jpg)"></div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#" class="profile-thumb">
+                            <img src="assets/images/placeholder.jpg" class="img-circle" alt="">
+                        </a>
+                    </div>
+
+                    <div class="media-body">
+                        <h1><?php echo $singleDataAC['fast_name'] . " " . $singleDataAC['last_name'] ?> <small class="display-block"><?php echo $singleDataAC['passion'] ?></small></h1>
+                    </div>
+
+                    <div class="media-right media-middle">
+                        <ul class="list-inline list-inline-condensed no-margin-bottom text-nowrap">
+                            <li><a href="#" class="btn btn-default"><i class="icon-camera position-left"></i> Change Profile</a>
+                            </li>
+                            <li><a href="#" class="btn btn-default"><i class="icon-images2 position-left">
+                                    </i> Channge
+                                    Cover image</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- /page header -->
-
-
-                <!-- Content area -->
-                <div class="content">
+            </div>
+            <!-- ==cover area== -->
 
 
 
-                    <!-- Dashboard content -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <!-- Quick stats boxes -->
+
+            <!-- Profile info -->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Profile information</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="reload"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <form action="#">
+                        <div class="form-group">
                             <div class="row">
-
-                                <div class="panel panel-flat">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">Welcome to Home Edit Section</h5>
-                                        <div class="heading-elements">
-                                            <ul class="icons-list">
-                                                <li><a data-action="reload"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="panel-body">
-                                        Here you can change the <code>Name</code>,
-                                        <code>Short Description</code>, <code>Image</code> and
-                                        <code>Link</code> of your webpage.
-                                    </div>
-
-                                    <table class="table datatable-basic table-bordered table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>SN</th>
-                                                <th>Your Name</th>
-                                                <th>Description</th>
-                                                <th>Link</th>
-                                                <th>Image</th>
-                                                <th>Status</th>
-                                                <th class="text-center">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-
-                                            $selectQry = "SELECT * FROM home_edit_section";
-
-                                            $home_section_list = mysqli_query($db_config, $selectQry);
-                                            foreach ($home_section_list as $key => $home) {
-
-
-                                            ?>
-
-
-                                                <!-- ============== Active Status Show in Result 1 to active =============== -->
-                                                <?php
-                                                $status = $home['status'];
-
-                                                if ($status == 1) {
-                                                    $status = "Active";
-                                                } else {
-                                                    $status = "In-Active";
-                                                }
-                                                ?>
-
-                                                <tr>
-                                                    <td><?php echo ++$key ?>
-                                                    </td>
-                                                    <td><?php echo $home['your_name'] ?></td>
-                                                    <td><?php echo $home['description'] ?></td>
-                                                    <td><?php echo $home['link'] ?></td>
-                                                    <td><?php echo $home['image'] ?></td>
-                                                    <td><span class="label label-success"><?php echo $status ?></span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <ul class="icons-list">
-                                                            <li><a href="update_home_section.php?home_id=<?php echo $home['id'] ?>"><i class=" icon-pencil7"></i></a>
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                </tr>
-
-                                            <?php
-                                            };
-                                            ?>
-
-                                        </tbody>
-                                    </table>
+                                <div class="col-md-4">
+                                    <label>Fast Name</label>
+                                    <input type="text" placeholder="Fast Name" class="form-control" value="<?php echo $singleDataAC['fast_name'] ?>" name="fast_name">
                                 </div>
-
+                                <div class="col-md-4">
+                                    <label>Last Name</label>
+                                    <input type="text" placeholder="Last Name" class="form-control" value="<?php echo $singleDataAC['last_name'] ?>" name="last_name">
+                                </div>
+                                <div class=" col-md-4">
+                                    <label>Passion</label>
+                                    <input type="text" placeholder="type your passion" class="form-control" value="<?php echo $singleDataAC['passion'] ?>" name="passion">
+                                </div>
                             </div>
-
                         </div>
 
+                        <div class=" form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>City</label>
+                                    <input type="text" placeholder="City" class="form-control" value="<?php echo $singleDataAC['city'] ?>" name="city">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Phone Number</label>
+                                    <input type="text" placeholder="Phone Number" class="form-control" value="<?php echo $singleDataAC['phone'] ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>E-mail</label>
+                                    <input type="text" placeholder="E-mail" class="form-control" value="<?php echo $singleDataAC['email'] ?>" name="email">
+                                </div>
+                            </div>
+                        </div>
 
-                    </div>
-                    <!-- /dashboard content -->
-
-
-                    <!-- Footer -->
-                    <div class="footer text-muted">
-                        &copy; 2022. <a href="#">Ghasful</a> by <a href="" target="_blank">MH RONY</a>
-                    </div>
-                    <!-- /footer -->
-
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary" name="UpdateInfo">Save</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- /content area -->
-
             </div>
-            <!-- /main content -->
+            <!-- /profile info -->
+
+        <?php } ?>
+
+        </div>
+        <!-- /dashboard content -->
+
+
+        <!-- Footer -->
+        <div class="footer text-muted">
+            &copy; 2022. <a href="#">Ghasful</a> by <a href="" target="_blank">MH RONY</a>
+        </div>
+        <!-- /footer -->
+
+</div>
+<!-- /content area -->
+
+</div>
+<!-- /main content -->
 
         </div>
         <!-- /page content -->
@@ -162,6 +176,6 @@
     </div>
     <!-- /page container -->
 
-</body>
+<!-- </body>
 
-</html>
+ </html> 
